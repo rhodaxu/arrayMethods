@@ -1,0 +1,51 @@
+<!--计算数组里不同字符串个数-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>运动</title>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+   
+   function countArray(aStr){
+    var aStrNew=[];
+    //去除数组里重复值
+    for(var i=0;i<aStr.length;i++){
+      if(aStrNew.indexOf(aStr[i])==-1){
+        aStrNew.push(aStr[i])
+      }
+    }
+    var obj={};
+    for(var i=0;i<aStrNew.length;i++){
+       obj[aStrNew[i]]=0;
+       for(var j=0;j<aStr.length;j++){
+         if(aStrNew[i]==aStr[j]){
+          obj[aStrNew[i]]++;
+         }
+      }
+    }
+    return obj;
+   } 
+
+   window.onload=function(){
+    var oBtn=document.getElementsByTagName('input')[1];
+    oBtn.onclick=function(){
+      var str=document.getElementsByTagName('input')[0].value;
+      var astr=str.split(',');
+      var obj=countArray(astr);
+      var html='';
+      for(i in obj){
+        html += i + ':' + obj[i] +'<br/>';
+      }
+      document.getElementsByTagName('div')[0].innerHTML = html;
+    }
+    
+   } 
+  </script>
+</head>
+<body>
+  请输入一组字符串，以‘,’号分隔
+  <input type='text' />
+  <input type='button' value='计算'/>
+  <div></div>
+</body>
+</html>
